@@ -72,6 +72,14 @@ app.get('/now',
 
 /** 9)  Get input from client - Route parameters */
 
+// route_path: '/user/:userId/book/:bookId'
+// actual_request_URL: '/user/546/book/6754'
+// req.params: {userId: '546', bookId: '6754'}
+
+app.get('/:word/echo', (req, res) => {
+    let obj = {echo: req.params.word}
+    res.json(obj)
+})
 
 /** 10) Get input from client - Query parameters */
 // /name?first=<firstname>&last=<lastname>
