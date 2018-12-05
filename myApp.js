@@ -1,5 +1,6 @@
 
 var express = require('express');
+var bodyParser = require('body-parser')
 var app = express();
 
 // --> 7)  Mount the Logger middleware here
@@ -9,7 +10,7 @@ app.use((req, res, next) => {
 })
 
 // --> 11)  Mount the body-parser middleware  here
-
+app.use(bodyParser.urlencoded({extended: false}))
 
 /** 1) Meet the node console. */
 console.log('Hello World')
@@ -95,6 +96,24 @@ app.route('/name')
 
 /** 11) Get ready for POST Requests - the `body-parser` */
 // place it before all the routes !
+
+// Besides GET there is another common http verb, it is POST. POST is the default method 
+// used to send client data with HTML forms. In the REST convention POST is used to send data 
+// to create new items in the database (a new user, or a new blog post). 
+// We don’t have a database in this project, but we are going to learn how to handle POST requests anyway.
+
+// In these kind of requests the data doesn’t appear in the URL, it is hidden in the request body. 
+// This is a part of the HTML request, also called payload. 
+// Since HTML is text based, even if you don’t see the data, it doesn’t mean that they are secret. 
+// The raw content of an HTTP POST request is shown below:
+
+//     POST /path/subpath HTTP/1.0
+//     From: john@example.com
+//     User-Agent: someBrowser/1.0
+//     Content-Type: application/x-www-form-urlencoded
+//     Content-Length: 20
+//     name=John+Doe&age=25
+
 
 
 /** 12) Get data form POST  */
