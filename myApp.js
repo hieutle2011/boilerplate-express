@@ -93,6 +93,9 @@ app.route('/name')
     .get((req, res) => {
         res.json({ name: `${req.query.first} ${req.query.last}` })
     })
+    .post((req, res) => {
+        res.json({ name: `${req.body.first} ${req.body.last}` }) // req.body from body-parser
+    })
 
 /** 11) Get ready for POST Requests - the `body-parser` */
 // place it before all the routes !
@@ -114,6 +117,17 @@ app.route('/name')
 //     Content-Length: 20
 //     name=John+Doe&age=25
 
+// Tip: There are several other http methods other than GET and POST. And by convention 
+// there is a correspondence between the http verb, and the operation you are going to execute on the server. 
+// The conventional mapping is:
+
+// POST (sometimes PUT) - Create a new resource using the information sent with the request,
+
+// GET - Read an existing resource without modifying it,
+
+// PUT or PATCH (sometimes POST) - Update a resource using the data sent,
+
+// DELETE => Delete a resource.
 
 
 /** 12) Get data form POST  */
