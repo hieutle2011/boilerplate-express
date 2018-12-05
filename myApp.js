@@ -26,7 +26,14 @@ app.use(express.static(__dirname + '/public'))
 
 /** 5) serve JSON on a specific route */
 app.get('/json', (req, res) => {
-    res.json({"message": "Hello json"})
+    let obj = { "message": "Hello json" }
+    if (process.env.MESSAGE_STYLE === 'uppercase') {
+        console.log(obj)
+        obj['message'] = obj['message'].toUpperCase()
+        res.json(obj)
+    } else {
+        res.json(obj)
+    }
 })
 
 /** 6) Use the .env file to configure the app */
@@ -45,7 +52,7 @@ app.get('/json', (req, res) => {
 /** 10) Get input from client - Query parameters */
 // /name?first=<firstname>&last=<lastname>
 
-  
+
 /** 11) Get ready for POST Requests - the `body-parser` */
 // place it before all the routes !
 
@@ -60,4 +67,4 @@ app.get('/json', (req, res) => {
 
 //---------- DO NOT EDIT BELOW THIS LINE --------------------
 
- module.exports = app;
+module.exports = app;
