@@ -40,8 +40,8 @@ app.get('/json', (req, res) => {
 })
 
 /** 6) Use the .env file to configure the app */
- 
- 
+
+
 /** 7) Root-level Middleware - A logger */
 //  place it before all the routes !
 
@@ -67,7 +67,7 @@ app.get('/now',
         next()
     },
     (req, res) => {
-        res.json({time: req.time})
+        res.json({ time: req.time })
     })
 
 /** 9)  Get input from client - Route parameters */
@@ -77,13 +77,21 @@ app.get('/now',
 // req.params: {userId: '546', bookId: '6754'}
 
 app.get('/:word/echo', (req, res) => {
-    let obj = {echo: req.params.word}
+    let obj = { echo: req.params.word }
     res.json(obj)
 })
 
 /** 10) Get input from client - Query parameters */
 // /name?first=<firstname>&last=<lastname>
 
+// route_path: '/library'
+// actual_request_URL: '/library?userId=546&bookId=6754'
+// req.query: {userId: '546', bookId: '6754'}
+
+app.route('/name')
+    .get((req, res) => {
+        res.json({ name: `${req.query.first} ${req.query.last}` })
+    })
 
 /** 11) Get ready for POST Requests - the `body-parser` */
 // place it before all the routes !
